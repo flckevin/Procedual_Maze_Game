@@ -13,6 +13,7 @@ public class ButtonGroupInfo : MonoBehaviour
     {
         //calling Onchange stage to change block values
         OnChangeStage();
+        defaultLevelAssign = nextLevelToAssign;
     }
 
     /// <summary>
@@ -40,8 +41,32 @@ public class ButtonGroupInfo : MonoBehaviour
                 _stages[i].StageUnlocker(false);
             }
         }
-            
-        defaultLevelAssign = nextLevelToAssign;
+
+        
+    }
+
+    public void OnChangeStageReverse()
+    {
+        //loop all the stage blocks
+        for (int i = _stages.Length - 1; i > 0; i--)
+        {
+            //set stage block information base on given value
+            _stages[i].StageBlockSetter(nextLevelToAssign);
+            //increase next level value for next stage block
+            nextLevelToAssign--;
+            //checking if current stage block contains value that been unlocked
+            if (_stages[i].currentLevel <= DataM.unlockedLevel)
+            {
+                //unlock stage
+                _stages[i].StageUnlocker(true);
+            }
+            else //not unlocked
+            {
+                //lock stage
+                _stages[i].StageUnlocker(false);
+            }
+        }
     }
 
 }
+

@@ -4582,6 +4582,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a336d0ab604c02045a95326b220b0779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonGroup:
+  - {fileID: 652008996}
+  - {fileID: 687524110}
 --- !u!1 &968345200
 GameObject:
   m_ObjectHideFlags: 0
@@ -8359,7 +8362,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1823400727}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 965416840}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: DataReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 965416840}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: DeactivateTarget
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 968345200}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1823400727
 MonoBehaviour:
   m_ObjectHideFlags: 0

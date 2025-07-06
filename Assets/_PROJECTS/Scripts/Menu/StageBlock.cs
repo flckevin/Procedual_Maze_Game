@@ -9,9 +9,9 @@ public class StageBlock : MonoBehaviour
     [Header("Stage block info")]
     public TextMeshProUGUI levelText;   //level text display on screen
     public int currentLevel;            //current level
-    public Image spiderWeb;        //spider web to determine whether to unlock
-    public Button button;             //button itself
-    public Image[] Star;
+    public Image spiderWeb;             //spider web to determine whether to unlock
+    public Button button;               //button itself
+    public Image[] star;                //all stars
     /// <summary>
     /// function to set level value
     /// </summary>
@@ -44,5 +44,28 @@ public class StageBlock : MonoBehaviour
         button.enabled = _unlocked;
         //activate / deactivate spiderweb
         spiderWeb.enabled = !_unlocked;
+
+        //if the stage is unlocked
+        if (_unlocked == true)
+        {
+            //random amount of star
+            int _star = Random.Range(1, star.Length);
+
+            //loop all the star
+            for (int i = 0; i < _star; i++)
+            {
+                //enable image of it
+                star[i].enabled = true;
+            }
+        }
+
+    }
+
+    public void ResetStar()
+    {
+        for (int i = 0; i < star.Length; i++)
+        {
+            star[i].enabled = false;
+        }
     }
 }
