@@ -6,6 +6,7 @@ public class ButtonGroupInfo : MonoBehaviour
 {
     public StageBlock[] _stages;    //all stage block in block group
     public int nextLevelToAssign;   //next value of stage to assign to block level
+    public int defaultLevelAssign;  //default level
 
     // Start is called before the first frame update
     void Start()
@@ -13,7 +14,7 @@ public class ButtonGroupInfo : MonoBehaviour
         //calling Onchange stage to change block values
         OnChangeStage();
     }
-    
+
     /// <summary>
     /// function to change stage block informations
     /// </summary>
@@ -27,5 +28,8 @@ public class ButtonGroupInfo : MonoBehaviour
             //increase next level value for next stage block
             nextLevelToAssign++;
         }
+
+        defaultLevelAssign = nextLevelToAssign;
     }
+
 }
