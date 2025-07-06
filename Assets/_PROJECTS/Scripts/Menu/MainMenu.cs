@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class MainMenu : MonoBehaviour
+using Quocanh.pattern;
+using TMPro;
+public class MainMenu : QuocAnhSingleton<MainMenu>
 {
     [Header("ButtonGroup")]
+    [HorizontalLine(padding = 20, thickness = 4)]
     public ButtonGroupInfo[] buttonGroup;           //all button group avalible in scene
+
+    //================================ PRIVATE VAR ================================
     private Vector3[] _buttonGroupDefaultPosition;  //all default position of each button group
+    //================================ PRIVATE VAR ================================
     
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         MenuInitializer();
     }
 
