@@ -5,8 +5,9 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
     [Header("ButtonGroup")]
-    public ButtonGroupInfo[] buttonGroup;
-    public Vector3[] buttonGroupDefaultPosition;
+    public ButtonGroupInfo[] buttonGroup;           //all button group avalible in scene
+    private Vector3[] _buttonGroupDefaultPosition;  //all default position of each button group
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +24,13 @@ public class MainMenu : MonoBehaviour
         //set unlocked level to static data
         DataM.unlockedLevel = _unlockedrand;
         //declare new button group position
-        buttonGroupDefaultPosition = new Vector3[buttonGroup.Length];
+        _buttonGroupDefaultPosition = new Vector3[buttonGroup.Length];
+        //loop all button groups
+        for (int i = 0; i < _buttonGroupDefaultPosition.Length; i++)
+        {
+            //storage of the button position
+            _buttonGroupDefaultPosition[i] = buttonGroup[i].transform.position;
+        }
     }
 
     /// <summary>
@@ -48,21 +55,31 @@ public class MainMenu : MonoBehaviour
 
     public void DataReset()
     {
+        //set data to 0
         DataM.unlockedLevel = 0;
 
+        //loop all button group
         for (int i = 0; i < buttonGroup.Length; i++)
         {
+            //set next level to assign back to default
             buttonGroup[i].nextLevelToAssign = buttonGroup[i].defaultLevelAssign - 1;
+            //set all stages in reverse 
             buttonGroup[i].OnChangeStageReverse();
-            
+            //reset position
+            buttonGroup[i].transform.position = _buttonGroupDefaultPosition[i];
         }
 
+        //loop all button group
         for (int i = 0; i < buttonGroup.Length; i++)
         {
+            //loop all the stages button inside the button group
             for (int y = 0; y < buttonGroup[i]._stages.Length; y++)
             {
+                //call remove star function from those stages button
                 buttonGroup[i]._stages[y].ResetStar();
             }
         }
+
+        
     }
 }

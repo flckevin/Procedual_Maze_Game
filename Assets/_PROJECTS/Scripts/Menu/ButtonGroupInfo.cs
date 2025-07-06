@@ -48,7 +48,7 @@ public class ButtonGroupInfo : MonoBehaviour
     public void OnChangeStageReverse()
     {
         //loop all the stage blocks
-        for (int i = _stages.Length - 1; i > 0; i--)
+        for (int i = _stages.Length - 1; i >= 0; i--)
         {
             //set stage block information base on given value
             _stages[i].StageBlockSetter(nextLevelToAssign);
