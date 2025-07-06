@@ -10,16 +10,18 @@ public class InfiniteScrollBehaviour : MonoBehaviour
     [HorizontalLine(thickness = 4, padding = 20)]
     public ButtonGroupInfo[] buttonsGroups;     //all the buttons
     public int yPosConnect;                     //y offset
-
     [Header("ScrollLimit")]
     [HorizontalLine(thickness = 4, padding = 20)]
     public int bottomLimit;                     //maximum bottom limit
     public int topLimit;                        //maximum top limit
 
-    // Start is called before the first frame update
+    //=========================== PRIVATE VAR ===========================
+    private ScrollRect _scrollRect;
+    //=========================== PRIVATE VAR ===========================
+
     void Start()
     {
-
+        _scrollRect = GetComponent<ScrollRect>();
     }
 
     /// <summary>
@@ -28,7 +30,7 @@ public class InfiniteScrollBehaviour : MonoBehaviour
     /// </summary>
     public void ScrollPositionDetection()
     {
-        
+
         //loop all the button group target need to be detect
         for (int i = 0; i < buttonsGroups.Length; i++)
         {
@@ -69,7 +71,7 @@ public class InfiniteScrollBehaviour : MonoBehaviour
                     buttonsGroups[i].transform.position = new Vector2(buttonsGroups[i + 1].transform.position.x,
                                                                     Mathf.Abs(buttonsGroups[i + 1].transform.position.y) - yPosConnect);
                     //setting the value levels
-                    buttonsGroups[i].nextLevelToAssign =  buttonsGroups[i + 1]._stages[0].currentLevel / buttonsGroups[i].defaultLevelAssign;
+                    buttonsGroups[i].nextLevelToAssign = buttonsGroups[i + 1]._stages[0].currentLevel / buttonsGroups[i].defaultLevelAssign;
                     buttonsGroups[i].OnChangeStage();
                 }
                 else // setting i does exceed array
@@ -82,7 +84,7 @@ public class InfiniteScrollBehaviour : MonoBehaviour
                     buttonsGroups[i].nextLevelToAssign = buttonsGroups[0]._stages[0].currentLevel / buttonsGroups[i].defaultLevelAssign;
                     buttonsGroups[i].OnChangeStage();
                 }
-               
+
             }
         }
     }

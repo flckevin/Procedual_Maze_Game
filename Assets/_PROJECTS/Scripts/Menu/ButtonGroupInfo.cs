@@ -27,8 +27,20 @@ public class ButtonGroupInfo : MonoBehaviour
             _stages[i].StageBlockSetter(nextLevelToAssign);
             //increase next level value for next stage block
             nextLevelToAssign++;
-        }
 
+            //checking if current stage block contains value that been unlocked
+            if (_stages[i].currentLevel <= DataM.unlockedLevel)
+            {
+                //unlock stage
+                _stages[i].StageUnlocker(true);
+            }
+            else //not unlocked
+            {
+                //lock stage
+                _stages[i].StageUnlocker(false);
+            }
+        }
+            
         defaultLevelAssign = nextLevelToAssign;
     }
 

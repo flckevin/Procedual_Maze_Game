@@ -7,7 +7,18 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MenuInitializer();
+    }
 
+    /// <summary>
+    /// function to initialize menu
+    /// </summary>
+    private void MenuInitializer()
+    {
+        //randomizing unlocked level
+        int _unlockedrand = UnityEngine.Random.Range(1, 10);
+        //set unlocked level to static data
+        DataM.unlockedLevel = _unlockedrand;
     }
 
     /// <summary>

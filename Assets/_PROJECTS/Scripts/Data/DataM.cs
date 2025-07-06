@@ -4,5 +4,5 @@ using UnityEngine;
 
 public static class DataM
 {
-    public static int maxLevel;
+    public static int unlockedLevel;
 }
