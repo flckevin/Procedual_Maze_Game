@@ -607,6 +607,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830178398}
   m_CullTransparentMesh: 1
+--- !u!1 &833686794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 833686795}
+  - component: {fileID: 833686796}
+  m_Layer: 0
+  m_Name: Maze Generation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &833686795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833686794}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &833686796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833686794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acb9b01a851334b8d4164c6cf80ffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeCellPrefab: {fileID: 2086388281847672835, guid: 5a9bff60d4ca6304398e3fd620e3062e, type: 3}
+  width: 10
+  height: 13
 --- !u!1 &852229603
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,3 +988,4 @@ SceneRoots:
   - {fileID: 403069088}
   - {fileID: 390222343}
   - {fileID: 1960863104}
+  - {fileID: 833686795}
