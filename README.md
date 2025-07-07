@@ -1,6 +1,7 @@
 <Header1> BUGGY MAZE </Header1><br>
 Development Length: 2 Days
 <br>
+<br>
 Features including <br>
 <ol>
   <li> A Star path finding
