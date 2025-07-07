@@ -11,8 +11,7 @@ Features including <br>
 <br>
 <br>
 <Header2> A STAR PATH FINDING </Header2><br>
-![Image](https://github.com/user-attachments/assets/f558e74a-55b9-4c11-86cb-c2ed91c6c4af)
-<br>
+
 ![Image](https://github.com/user-attachments/assets/0e1e9d84-62bd-43da-aca8-f0d98cb50435)
 <br>
 <Header2> MAZE GENERATION </Header2><br>
