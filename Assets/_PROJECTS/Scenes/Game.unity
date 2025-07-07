@@ -654,6 +654,8 @@ MonoBehaviour:
   mazeCellPrefab: {fileID: 2086388281847672835, guid: 5a9bff60d4ca6304398e3fd620e3062e, type: 3}
   width: 10
   height: 13
+  camPos: {x: 4.5, y: 6.5, z: -10}
+  camSize: 15
 --- !u!1 &852229603
 GameObject:
   m_ObjectHideFlags: 0

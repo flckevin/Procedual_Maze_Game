@@ -13,8 +13,15 @@ public class MazeGeneration : MonoBehaviour
     public int width;                       //the width of the maze
     public int height;                      //the height of the maze
 
-    private MazeCell[,] _mazeGrid;          //dimension of the maze so we can track and position easily
+    [Header("Camera")]
+    [HorizontalLine(padding = 20, thickness = 4)]
+    public Vector3 camPos;                  //camera position
+    public float camSize;                   //camera size
 
+    //================================ PRIVATE ================================
+    private MazeCell[,] _mazeGrid;          //dimension of the maze so we can track and position easily
+    //================================ PRIVATE ================================
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +33,11 @@ public class MazeGeneration : MonoBehaviour
     /// </summary>
     void MazeInitializer()
     {
+        #region ========== MAZE INITIALIZATION ==========
         //create new grid with following given width and height for maze dimension
         _mazeGrid = new MazeCell[width, height];
+        //create new gameobject with name maze parent
+        GameObject _mazeParent = new GameObject("Maze Parent");
         //loop at x position
         for (int x = 0; x < width; x++)
         {
@@ -40,11 +50,20 @@ public class MazeGeneration : MonoBehaviour
                 _mazeGrid[x, y] = _spawnedCell;
                 //initialize each cell
                 _spawnedCell.CellInitialize();
+                //set parent for the maze
+                _spawnedCell.transform.parent = _mazeParent.transform;
             }
         }
 
         //call maze generation which to create path inside maze
         GenerateMaze(null, _mazeGrid[0, 0]);
+        #endregion
+
+        #region ========== CAMERA INITIALIZATION ==========
+        Camera _cam = Camera.main;
+        _cam.transform.position = camPos;
+        _cam.orthographicSize = camSize;
+        #endregion
     }
 
     /// <summary>
