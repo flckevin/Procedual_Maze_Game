@@ -8,7 +8,7 @@ public class AIBehaviour : MonoBehaviour
     public Node targetNode;
     public List<Node> path;
     public float moveSpeed;
-
+    public bool ableToMove;
     void Awake()
     {
         path = new List<Node>();
@@ -17,6 +17,7 @@ public class AIBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (ableToMove == false) return;
         GeneratePath();
     }
 
@@ -51,6 +52,10 @@ public class AIBehaviour : MonoBehaviour
         }
     }
 
+    public void MoveAI(bool _move)
+    {
+        ableToMove = _move;
+    }
     // void OnDrawGizmos()
     // {
     //     if(path.Count > 0)

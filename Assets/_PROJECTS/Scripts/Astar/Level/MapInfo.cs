@@ -7,8 +7,8 @@ public class MapInfo : MonoBehaviour
     public Node startNode;                         //start node
     public Node targetNode;                        //goal node ai need to reach
     public List<Node> allNode = new List<Node>();  //all node in the level
-    public AIBehaviour AI;                         //the ai itself
-
+    public AIBehaviour AI_Bug;                         //the ai itself
+    public AIBehaviour AI_Bug_Hint;                         //the ai itself
     public void MapInitialize()
     {
         NodeConnection();
@@ -54,12 +54,19 @@ public class MapInfo : MonoBehaviour
         //setup node
         AStarManager.Instance.allNode = allNode;
         //assign target node to AI
-        AI.targetNode = targetNode;
+        AI_Bug.targetNode = targetNode;
         //assign start node to AI
-        AI.currentNode = startNode;
+        AI_Bug.currentNode = startNode;
         //enable AI
-        AI.enabled = true;
+        AI_Bug.enabled = true;
 
+        //assign target node to AI
+        AI_Bug_Hint.targetNode = targetNode;
+        //assign start node to AI
+        AI_Bug_Hint.currentNode = startNode;
+        //enable AI
+        AI_Bug_Hint.enabled = true;
+        AI_Bug_Hint.gameObject.SetActive(false);
     }
 
     //I have no idea how i come up with this thing but for some reason it works with my pathfinding framework

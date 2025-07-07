@@ -8,7 +8,9 @@ public class MazeGeneration : MonoBehaviour
     [HorizontalLine(padding = 20, thickness = 4)]
     public MazeCell mazeCellPrefab;         //cell prefab of each maze cell
     public GameObject bug;                  //bug prefab
+    public GameObject bugHint;              //bug hint
     public GameObject target;               //target prefab
+    
 
     [Header("SIZE")]
     [HorizontalLine(padding = 20, thickness = 4)]
@@ -64,9 +66,18 @@ public class MazeGeneration : MonoBehaviour
 
                 if (x == 0 && y == 12)
                 {
+                    //spawning both type of bug
                     bug = Instantiate(bug, new Vector3(x, y, 0), Quaternion.identity);
+                    bugHint = Instantiate(bugHint, new Vector3(x, y, 0), Quaternion.identity);
+
+                    //adding bug information into map
                     _mapInfo.startNode = _spawnedCell.GetComponent<Node>();
-                    _mapInfo.AI = bug.GetComponent<AIBehaviour>();
+                    _mapInfo.AI_Bug = bug.GetComponent<AIBehaviour>();
+                    _mapInfo.AI_Bug_Hint = bugHint.GetComponent<AIBehaviour>();
+
+                    //assigning bug into game manager so it can be access anywhere
+                    GameManager.Instance.hintBug = bugHint.GetComponent<AIBehaviour>();
+                    GameManager.Instance.mainBug = bug.GetComponent<AIBehaviour>();
                 }
             }
         }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StageBlock : MonoBehaviour
@@ -59,6 +60,16 @@ public class StageBlock : MonoBehaviour
             }
         }
 
+    }
+
+    /// <summary>
+    /// function to load into level
+    /// ==> notice: you can even make features to put your own level ID in here
+    /// and load into it
+    /// </summary>
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public void ResetStar()
