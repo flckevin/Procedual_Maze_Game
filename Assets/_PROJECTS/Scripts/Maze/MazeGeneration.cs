@@ -7,8 +7,8 @@ public class MazeGeneration : MonoBehaviour
     [Header("PREFAB")]
     [HorizontalLine(padding = 20, thickness = 4)]
     public MazeCell mazeCellPrefab;         //cell prefab of each maze cell
-    public GameObject bug;
-    public GameObject target;
+    public GameObject bug;                  //bug prefab
+    public GameObject target;               //target prefab
 
     [Header("SIZE")]
     [HorizontalLine(padding = 20, thickness = 4)]
@@ -22,8 +22,9 @@ public class MazeGeneration : MonoBehaviour
 
     //================================ PRIVATE ================================
     private MazeCell[,] _mazeGrid;          //dimension of the maze so we can track and position easily
+    private MapInfo _mapInfo;
     //================================ PRIVATE ================================
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +36,11 @@ public class MazeGeneration : MonoBehaviour
     /// </summary>
     void MazeInitializer()
     {
-        #region ========== MAZE INITIALIZATION ==========
+        //============== SET ==============
+        _mapInfo = GetComponent<MapInfo>();
+        //============== SET ==============
+
+        #region ========== MAZE / A* INITIALIZATION  ==========
         //create new grid with following given width and height for maze dimension
         _mazeGrid = new MazeCell[width, height];
         //create new gameobject with name maze parent
@@ -46,7 +51,6 @@ public class MazeGeneration : MonoBehaviour
             //loop at y posiion
             for (int y = 0; y < height; y++)
             {
-                if(x == 0 && y == 12) Instantiate(bug, new Vector3(x, y, 0), Quaternion.identity);
                 //spawning maze cell
                 MazeCell _spawnedCell = Instantiate(mazeCellPrefab, new Vector3(x, y, 0), Quaternion.identity);
                 //set maze 2D array to be this maze with it following position
@@ -55,17 +59,30 @@ public class MazeGeneration : MonoBehaviour
                 _spawnedCell.CellInitialize();
                 //set parent for the maze
                 _spawnedCell.transform.parent = _mazeParent.transform;
+                _mapInfo.allNode.Add(_spawnedCell.GetComponent<Node>());
+
+                if (x == 0 && y == 12)
+                {
+                    bug = Instantiate(bug, new Vector3(x, y, 0), Quaternion.identity);
+                    _mapInfo.startNode = _spawnedCell.GetComponent<Node>();
+                    _mapInfo.AI = bug.GetComponent<AIBehaviour>();
+                }
             }
         }
-
+        //call maze generation which to create path inside maze
+        GenerateMaze(null, _mazeGrid[0, 0]);
+        
         //randomizing target posiotion
         Vector2 _targetPos = new Vector2(UnityEngine.Random.Range(0, width), UnityEngine.Random.Range(0, height));
         //spawn target at that randomized positon
         target = Instantiate(target, new Vector3(_targetPos.x, _targetPos.y, 0), Quaternion.identity);
+        //set target for map info
+        _mapInfo.targetNode = target.GetComponent<Node>();
 
-        //call maze generation which to create path inside maze
-        GenerateMaze(null, _mazeGrid[0, 0]);
+        _mapInfo.MapInitialize();
         #endregion
+
+        
 
         #region ========== CAMERA INITIALIZATION ==========
         //get camera
@@ -75,6 +92,8 @@ public class MazeGeneration : MonoBehaviour
         //set camera orthographic size
         _cam.orthographicSize = camSize;
         #endregion
+
+        
     }
 
     /// <summary>
@@ -130,7 +149,8 @@ public class MazeGeneration : MonoBehaviour
         int x = (int)currentCell.transform.position.x;
         int y = (int)currentCell.transform.position.y;
 
-        //checking if all the cells at left, right, back and front are in bounds of the maze
+        //checking if all the cells at left, right, back and front are in bounds of the maze and not visited
+
         if (x + 1 < width)
         {
             MazeCell _cellToRight = _mazeGrid[x + 1, y];
