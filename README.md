@@ -1,5 +1,5 @@
 <Header1> BUGGY MAZE </Header1><br>
-![Image](https://github.com/user-attachments/assets/03a6013c-0023-4e3a-819c-6e54fe824f6d)<br>
+
 <br>
 Features including <br>
 <ol>
@@ -11,6 +11,7 @@ Features including <br>
 <br>
 <br>
 <Header2> A STAR PATH FINDING </Header2><br>
+![Image](https://github.com/user-attachments/assets/03a6013c-0023-4e3a-819c-6e54fe824f6d)<br>
 
 ![Image](https://github.com/user-attachments/assets/0e1e9d84-62bd-43da-aca8-f0d98cb50435)
 <br>
