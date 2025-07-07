@@ -652,6 +652,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mazeCellPrefab: {fileID: 2086388281847672835, guid: 5a9bff60d4ca6304398e3fd620e3062e, type: 3}
+  bug: {fileID: 7058617029599059022, guid: 43350a6b0b21a3244a664776508aef41, type: 3}
+  target: {fileID: 7637502722299124195, guid: fb630e3d41b0fdd4daa32032bafd73da, type: 3}
   width: 10
   height: 13
   camPos: {x: 4.5, y: 6.5, z: -10}

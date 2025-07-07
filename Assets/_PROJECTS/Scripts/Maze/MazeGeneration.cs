@@ -7,6 +7,8 @@ public class MazeGeneration : MonoBehaviour
     [Header("PREFAB")]
     [HorizontalLine(padding = 20, thickness = 4)]
     public MazeCell mazeCellPrefab;         //cell prefab of each maze cell
+    public GameObject bug;
+    public GameObject target;
 
     [Header("SIZE")]
     [HorizontalLine(padding = 20, thickness = 4)]
@@ -44,6 +46,7 @@ public class MazeGeneration : MonoBehaviour
             //loop at y posiion
             for (int y = 0; y < height; y++)
             {
+                if(x == 0 && y == 12) Instantiate(bug, new Vector3(x, y, 0), Quaternion.identity);
                 //spawning maze cell
                 MazeCell _spawnedCell = Instantiate(mazeCellPrefab, new Vector3(x, y, 0), Quaternion.identity);
                 //set maze 2D array to be this maze with it following position
@@ -55,13 +58,21 @@ public class MazeGeneration : MonoBehaviour
             }
         }
 
+        //randomizing target posiotion
+        Vector2 _targetPos = new Vector2(UnityEngine.Random.Range(0, width), UnityEngine.Random.Range(0, height));
+        //spawn target at that randomized positon
+        target = Instantiate(target, new Vector3(_targetPos.x, _targetPos.y, 0), Quaternion.identity);
+
         //call maze generation which to create path inside maze
         GenerateMaze(null, _mazeGrid[0, 0]);
         #endregion
 
         #region ========== CAMERA INITIALIZATION ==========
+        //get camera
         Camera _cam = Camera.main;
+        //set camera position
         _cam.transform.position = camPos;
+        //set camera orthographic size
         _cam.orthographicSize = camSize;
         #endregion
     }
