@@ -73,12 +73,11 @@ public class MazeGeneration : MonoBehaviour
         GenerateMaze(null, _mazeGrid[0, 0]);
         
         //randomizing target posiotion
-        Vector2 _targetPos = new Vector2(UnityEngine.Random.Range(0, width), UnityEngine.Random.Range(0, height));
+        Vector2 _targetPos = new Vector2Int(UnityEngine.Random.Range(0, width), UnityEngine.Random.Range(0, height));
         //spawn target at that randomized positon
         target = Instantiate(target, new Vector3(_targetPos.x, _targetPos.y, 0), Quaternion.identity);
         //set target for map info
-        _mapInfo.targetNode = target.GetComponent<Node>();
-
+        _mapInfo.targetNode = _mazeGrid[(int)_targetPos.x, (int)_targetPos.y].GetComponent<Node>();
         _mapInfo.MapInitialize();
         #endregion
 
