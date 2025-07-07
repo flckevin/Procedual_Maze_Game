@@ -14,7 +14,8 @@ public class MazeGeneration : MonoBehaviour
     [HorizontalLine(padding = 20, thickness = 4)]
     public int width;                       //the width of the maze
     public int height;                      //the height of the maze
-
+    public Vector2 offset;
+    
     [Header("Camera")]
     [HorizontalLine(padding = 20, thickness = 4)]
     public Vector3 camPos;                  //camera position
@@ -200,32 +201,32 @@ public class MazeGeneration : MonoBehaviour
         //checking previous cell is at left of current one
         if (_previousCell.transform.position.x < _currentCell.transform.position.x)
         {
-            _previousCell.ClearWall("RightWall");
-            _currentCell.ClearWall("LeftWall");
+            _previousCell.ClearWall(Direction.Right);
+            _currentCell.ClearWall(Direction.Left);
             return;
         }
 
         //checking previous cell is at right of current one
         if (_previousCell.transform.position.x > _currentCell.transform.position.x)
         {
-            _previousCell.ClearWall("LeftWall");
-            _currentCell.ClearWall("RightWall");
+            _previousCell.ClearWall(Direction.Left);
+            _currentCell.ClearWall(Direction.Right);
             return;
         }
 
         //checking previous cell is at bottom of current one
         if (_previousCell.transform.position.y < _currentCell.transform.position.y)
         {
-            _previousCell.ClearWall("TopWall");
-            _currentCell.ClearWall("BottomWall");
+            _previousCell.ClearWall(Direction.Top);
+            _currentCell.ClearWall(Direction.Bot);
             return;
         }
 
         //checking previous cell is at top of current one
         if (_previousCell.transform.position.y > _currentCell.transform.position.y)
         {
-            _previousCell.ClearWall("BottomWall");
-            _currentCell.ClearWall("TopWall");
+            _previousCell.ClearWall(Direction.Bot);
+            _currentCell.ClearWall(Direction.Top);
             return;
         }
     }

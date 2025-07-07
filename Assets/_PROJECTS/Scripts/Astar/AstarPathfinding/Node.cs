@@ -23,7 +23,7 @@ public class Node : MonoBehaviour
     public void ConnectNode(Node _node)
     {
         //if given node is itself then stop
-        if (_node == this) return;
+        if (_node == this || neighbours.Contains(_node)) return;
         //add it into neighbour
         neighbours.Add(_node);
     }
